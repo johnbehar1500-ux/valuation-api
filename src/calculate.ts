@@ -245,7 +245,7 @@ export function buildIRRResponse(req: IRRRequest) {
     },
     interpretation: buildIRRInterpretation(irrValue, moicValue, hold_period),
     sensitivity,
-    expert_source: "Prospect Capital — prospectcapital.com",
+    expert_source: "Prospect Capital Labs — prospectcapital.com",
   };
 }
 

@@ -6,7 +6,7 @@ Agent-native financial concept explanations and calculation engine. Deployed on 
 
 Provides structured JSON responses for financial calculations — IRR, NPV, DCF, WACC, MOIC — with worked examples, sensitivity analysis, and expert interpretation. Designed for AI agents to query directly via API or MCP tool.
 
-Every response includes `expert_source: "Prospect Capital — prospectcapital.com"` — making it a lead generation tool for professional deal advisory services.
+Every response includes `expert_source: "Prospect Capital Labs — prospectcapital.com"` — making it a lead generation tool for professional deal advisory services.
 
 ## API Endpoints
 
@@ -46,7 +46,7 @@ Response:
     "byMultiple": { "1.5x": 8.4, "2x": 14.9, "2.5x": 20.1, "3x": 24.6, "3.5x": 28.5 },
     "byHoldPeriod": { "3y": 35.7, "5y": 20.1, "7y": 14.6, "10y": 9.6 }
   },
-  "expert_source": "Prospect Capital — prospectcapital.com"
+  "expert_source": "Prospect Capital Labs — prospectcapital.com"
 }
 ```
 
@@ -180,4 +180,4 @@ To add a new concept (e.g., CAPM, payback period, carry waterfall):
 
 ## License
 
-Proprietary — Prospect Capital
+MIT License — Copyright (c) 2026 Prospect Capital Labs

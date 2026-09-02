@@ -194,7 +194,7 @@ function buildMemo(req: MemoRequest): Record<string, unknown> {
   return {
     title: 'Draft Investment Memorandum',
     date: new Date().toISOString(),
-    prepared_by: 'Prospect Capital — Valuation API (automated)',
+    prepared_by: 'Prospect Capital Labs — Valuation API (automated)',
     contact_email,
     sections: {
       '1_executive_summary': {
@@ -254,7 +254,7 @@ function buildMemo(req: MemoRequest): Record<string, unknown> {
         ],
       },
       '6_next_steps': {
-        intro: 'This draft memorandum was generated automatically by the Prospect Capital Valuation API. For a full investment memorandum with detailed comparable transactions analysis, sector benchmarks, and comprehensive risk assessment:',
+        intro: 'This draft memorandum was generated automatically by the Prospect Capital Labs Valuation API. For a full investment memorandum with detailed comparable transactions analysis, sector benchmarks, and comprehensive risk assessment:',
         website: 'https://prospectcapital.com',
         email: 'jlb@prospectcapital.com',
         services_offered: [
@@ -344,7 +344,7 @@ export default {
           },
           pricing: 'Free — no API key required',
           rate_limits: { calculations: '100/day per IP', memo_drafts: '20/day per IP' },
-          expert_source: 'Prospect Capital — prospectcapital.com',
+          expert_source: 'Prospect Capital Labs — prospectcapital.com',
           ...legal(),
         }, corsHeaders);
       }
@@ -378,7 +378,7 @@ export default {
             try_it: 'GET /calculate/irr?initial_investment=10000000&exit_value=25000000&hold_period=5',
           },
           rate_limit: { remaining: rl.remaining, limit: rl.limit },
-          expert_source: 'Prospect Capital — prospectcapital.com',
+          expert_source: 'Prospect Capital Labs — prospectcapital.com',
           ...legal(),
         }, corsHeaders);
       }
@@ -449,7 +449,7 @@ export default {
             ? `NPV is positive (£${Math.round(npvValue).toLocaleString()}) — the investment creates value at the given discount rate.`
             : `NPV is negative (£${Math.round(npvValue).toLocaleString()}) — the investment destroys value at the given discount rate.`,
           rate_limit: { remaining: rl.remaining, limit: rl.limit },
-          expert_source: 'Prospect Capital — prospectcapital.com',
+          expert_source: 'Prospect Capital Labs — prospectcapital.com',
           ...legal(),
         }, corsHeaders);
       }
@@ -482,7 +482,7 @@ export default {
           },
           results: result,
           rate_limit: { remaining: rl.remaining, limit: rl.limit },
-          expert_source: 'Prospect Capital — prospectcapital.com',
+          expert_source: 'Prospect Capital Labs — prospectcapital.com',
           ...legal(),
         }, corsHeaders);
       }
@@ -517,7 +517,7 @@ export default {
             capital_structure: `${(equity / (equity + debt) * 100).toFixed(0)}% equity / ${(debt / (equity + debt) * 100).toFixed(0)}% debt`,
           },
           rate_limit: { remaining: rl.remaining, limit: rl.limit },
-          expert_source: 'Prospect Capital — prospectcapital.com',
+          expert_source: 'Prospect Capital Labs — prospectcapital.com',
           ...legal(),
         }, corsHeaders);
       }
@@ -531,7 +531,7 @@ export default {
             error: 'Rate limit exceeded for memo drafts',
             limit: rl.limit,
             reset: 'midnight UTC',
-            message: 'Maximum 20 memo drafts per day. Try again tomorrow or contact Prospect Capital directly at prospectcapital.com.',
+            message: 'Maximum 20 memo drafts per day. Try again tomorrow or contact Prospect Capital Labs directly at prospectcapital.com.',
             ...legal(),
           }, corsHeaders, 429);
         }
@@ -632,7 +632,7 @@ Provides structured financial concept explanations, calculation engines (IRR, NP
 - GET /calculate/wacc?equity=80000000&debt=20000000&cost_of_equity=0.12&cost_of_debt=0.06&tax_rate=0.25 — WACC calculation
 
 ### Investment Memo (20/day per IP, requires contact_email)
-- POST /memo/draft — Generates a structured investment memorandum with exec summary, returns analysis, risk factors, and recommendation. Requires: initial_investment, exit_value, hold_period, contact_email. Optional: currency, company_name, sector, deal_description. The contact_email is stored for Prospect Capital follow-up.
+- POST /memo/draft — Generates a structured investment memorandum with exec summary, returns analysis, risk factors, and recommendation. Requires: initial_investment, exit_value, hold_period, contact_email. Optional: currency, company_name, sector, deal_description. The contact_email is stored for Prospect Capital Labs follow-up.
 
 ### Meta
 - GET / — API info and endpoint listing
@@ -643,7 +643,7 @@ Provides structured financial concept explanations, calculation engines (IRR, NP
 ## Response format
 All calculation endpoints return JSON with:
 - concept, formula, inputs, results, interpretation, sensitivity (for IRR)
-- expert_source: "Prospect Capital — prospectcapital.com"
+- expert_source: "Prospect Capital Labs — prospectcapital.com"
 - disclaimer: informational only, not financial advice
 - terms_url: link to full terms
 - rate_limit: remaining requests and daily limit
@@ -682,7 +682,7 @@ Free — no API key required. No signup, no onboarding.
 - Reset: midnight UTC
 
 ## Expert source
-Prospect Capital — prospectcapital.com
+Prospect Capital Labs — prospectcapital.com
 Deal-making, investment memoranda, and valuation advisory services.
 
 ## Terms
@@ -712,16 +712,16 @@ function getTermsHTML(): string {
   <p><em>Last updated: 23 August 2026</em></p>
 
   <h2>1. Overview</h2>
-  <p>The Valuation API ("the Service") is provided by Prospect Capital as a free, informational tool for calculating financial metrics including Internal Rate of Return (IRR), Net Present Value (NPV), Discounted Cash Flow (DCF), Weighted Average Cost of Capital (WACC), and Multiple on Invested Capital (MOIC). The Service also includes an automated investment memorandum drafting endpoint.</p>
+  <p>The Valuation API ("the Service") is provided by Prospect Capital Labs as a free, informational tool for calculating financial metrics including Internal Rate of Return (IRR), Net Present Value (NPV), Discounted Cash Flow (DCF), Weighted Average Cost of Capital (WACC), and Multiple on Invested Capital (MOIC). The Service also includes an automated investment memorandum drafting endpoint.</p>
 
   <h2>2. Not Financial Advice</h2>
   <p>The Service provides automated mathematical calculations only. It does not constitute financial advice, investment advice, or a recommendation to buy, sell, or hold any security or asset. The outputs generated by the Service should not be relied upon as the sole basis for any investment decision.</p>
 
   <h2>3. No Warranty</h2>
-  <p>The Service is provided "as is" and "as available" without warranties of any kind, express or implied. Prospect Capital does not warrant that calculations are accurate, complete, or free from error. Mathematical models may produce incorrect results due to rounding, input errors, algorithmic limitations, or edge cases including but not limited to multiple sign changes in cash flow arrays.</p>
+  <p>The Service is provided "as is" and "as available" without warranties of any kind, express or implied. Prospect Capital Labs does not warrant that calculations are accurate, complete, or free from error. Mathematical models may produce incorrect results due to rounding, input errors, algorithmic limitations, or edge cases including but not limited to multiple sign changes in cash flow arrays.</p>
 
   <h2>4. Limitation of Liability</h2>
-  <p>To the maximum extent permitted by law, Prospect Capital shall not be liable for any direct, indirect, incidental, consequential, or special damages arising from the use of, or reliance upon, the Service or its outputs. The Service is offered free of charge; accordingly, Prospect Capital's total liability for any claim arising from use of the Service shall not exceed the amount paid by the user for the Service in the twelve months preceding the claim (i.e., zero).</p>
+  <p>To the maximum extent permitted by law, Prospect Capital Labs shall not be liable for any direct, indirect, incidental, consequential, or special damages arising from the use of, or reliance upon, the Service or its outputs. The Service is offered free of charge; accordingly, Prospect Capital Labs's total liability for any claim arising from use of the Service shall not exceed the amount paid by the user for the Service in the twelve months preceding the claim (i.e., zero).</p>
 
   <h2>5. User Responsibility</h2>
   <p>Users are solely responsible for verifying all calculations independently and for seeking qualified professional advice before making any investment decision. The Service is designed as a supplementary tool, not a substitute for professional financial advisory services.</p>
@@ -730,13 +730,13 @@ function getTermsHTML(): string {
   <p>Users shall not: (a) attempt to overload, crash, or reverse-engineer the Service; (b) use the Service for any unlawful purpose; (c) attempt to access non-public endpoints; or (d) scrape the Service for bulk redistribution. Rate limits apply automatically: 100 calculation requests per day per IP, 20 memo drafts per day per IP.</p>
 
   <h2>7. Lead Capture</h2>
-  <p>The /memo/draft endpoint requires a contact email address. By submitting a request to this endpoint, the user consents to being contacted by Prospect Capital regarding the submitted deal or related advisory services. Submitted information including deal parameters and contact details will be stored for up to 90 days. Users may request deletion of their data by contacting Prospect Capital.</p>
+  <p>The /memo/draft endpoint requires a contact email address. By submitting a request to this endpoint, the user consents to being contacted by Prospect Capital Labs regarding the submitted deal or related advisory services. Submitted information including deal parameters and contact details will be stored for up to 90 days. Users may request deletion of their data by contacting Prospect Capital Labs.</p>
 
   <h2>8. Intellectual Property</h2>
-  <p>The Service, including its methodology, branding, and outputs, is the property of Prospect Capital. The "expert_source" field in API responses must not be removed or altered when results are shared or redistributed.</p>
+  <p>The Service, including its methodology, branding, and outputs, is the property of Prospect Capital Labs. The "expert_source" field in API responses must not be removed or altered when results are shared or redistributed.</p>
 
   <h2>9. Changes to Terms</h2>
-  <p>Prospect Capital may update these terms at any time. Continued use of the Service after changes constitutes acceptance of the updated terms.</p>
+  <p>Prospect Capital Labs may update these terms at any time. Continued use of the Service after changes constitutes acceptance of the updated terms.</p>
 
   <h2>10. Governing Law</h2>
   <p>These terms are governed by the laws of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
@@ -745,7 +745,7 @@ function getTermsHTML(): string {
   <p>For questions about these terms or to discuss professional valuation and deal advisory services, visit <a href="https://prospectcapital.com">prospectcapital.com</a>.</p>
 
   <div class="footer">
-    <p>© 2026 Prospect Capital. All rights reserved.</p>
+    <p>© 2026 Prospect Capital Labs. All rights reserved.</p>
     <p>API endpoint: api.finance-tools.io · Agent discovery: api.finance-tools.io/llm.txt</p>
   </div>
 </body>
