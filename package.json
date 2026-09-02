@@ -1,0 +1,17 @@
+{
+  "name": "valuation-api",
+  "version": "0.1.0",
+  "description": "Agent-native financial concept explanations and calculation engine",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250101.0",
+    "typescript": "^5.5.0",
+    "wrangler": "^3.90.0"
+  }
+}

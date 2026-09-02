@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Cloudflare
+.wrangler/
+.dev.vars
+
+# Build output
+dist/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Environment
+.env
+.env.local

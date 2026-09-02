@@ -1,0 +1,21 @@
+name = "valuation-api"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+
+# Free tier: 100,000 requests/day
+# No paid features needed for MVP
+
+routes = [
+  { pattern = "api.finance-tools.io", custom_domain = true, zone_name = "finance-tools.io" }
+]
+
+[[kv_namespaces]]
+binding = "LEADS"
+id = "e493599b67484b3eb6375e34359f38f4"
+
+[[send_email]]
+name = "LEAD_EMAIL"
+
+# Environment variables (if needed later):
+# [vars]
+# API_KEY = ""
