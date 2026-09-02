@@ -87,7 +87,7 @@ This opens a browser window. Sign in with your Cloudflare account. Authorize Wra
 3. Set to **Public** (you want agents to find your code)
 4. Check "Add a README file"
 5. Click "Create repository"
-6. Copy the repo URL (e.g., `https://github.com/johnbehar/valuation-api.git`)
+6. Copy the repo URL (e.g., `https://github.com/johnbehar1500-ux/valuation-api.git`)
 
 ### Step 4: Push Your Code to GitHub
 
@@ -102,7 +102,7 @@ git add .
 git commit -m "Initial commit: IRR/NPV/DCF/WACC calculation engine"
 
 # Connect to GitHub (replace with your repo URL)
-git remote add origin https://github.com/johnbehar/valuation-api.git
+git remote add origin https://github.com/johnbehar1500-ux/valuation-api.git
 git branch -M main
 git push -u origin main
 ```
