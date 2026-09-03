@@ -23,9 +23,10 @@ import {
   buildIRRResponse,
 } from './calculate';
 import { RATIO_TOOLS, runRatioTool } from './ratioTools';
+import { ADVANCED_TOOLS, runAdvancedTool } from './advancedTools';
 
 const SERVER_NAME = 'valuation-api';
-const SERVER_VERSION = '0.5.0';
+const SERVER_VERSION = '0.6.0';
 const PROTOCOL_VERSION = '2024-11-05';
 
 const CORS_HEADERS: Record<string, string> = {
@@ -243,7 +244,7 @@ const TOOLS: ToolDef[] = [
   },
 ];
 
-const ALL_TOOLS: ToolDef[] = [...TOOLS, ...RATIO_TOOLS];
+const ALL_TOOLS: ToolDef[] = [...TOOLS, ...RATIO_TOOLS, ...ADVANCED_TOOLS];
 
 // ============================================================
 // JSON-RPC helpers
@@ -429,6 +430,14 @@ function handleToolCall(id: unknown, params: unknown): Response {
         if (!ratio.ok) return invalidParams(id, ratio.error);
         return jsonRpcResult(id, {
           content: [{ type: 'text', text: JSON.stringify(ratio.value) }],
+        });
+      }
+      // TVM / valuation-depth family (Phase 2) — dispatched from advancedTools.ts
+      const advanced = runAdvancedTool(name, args);
+      if (advanced) {
+        if (!advanced.ok) return invalidParams(id, advanced.error);
+        return jsonRpcResult(id, {
+          content: [{ type: 'text', text: JSON.stringify(advanced.value) }],
         });
       }
       return jsonRpcError(id, -32602, 'Invalid params', `Unknown tool: ${name}`);
