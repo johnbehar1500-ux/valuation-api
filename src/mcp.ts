@@ -22,9 +22,10 @@ import {
   irrSensitivity,
   buildIRRResponse,
 } from './calculate';
+import { RATIO_TOOLS, runRatioTool } from './ratioTools';
 
 const SERVER_NAME = 'valuation-api';
-const SERVER_VERSION = '0.4.0';
+const SERVER_VERSION = '0.5.0';
 const PROTOCOL_VERSION = '2024-11-05';
 
 const CORS_HEADERS: Record<string, string> = {
@@ -242,6 +243,8 @@ const TOOLS: ToolDef[] = [
   },
 ];
 
+const ALL_TOOLS: ToolDef[] = [...TOOLS, ...RATIO_TOOLS];
+
 // ============================================================
 // JSON-RPC helpers
 // ============================================================
@@ -419,8 +422,17 @@ function handleToolCall(id: unknown, params: unknown): Response {
       });
     }
 
-    default:
+    default: {
+      // Financial ratio family (Phase 1) — dispatched from ratioTools.ts
+      const ratio = runRatioTool(name, args);
+      if (ratio) {
+        if (!ratio.ok) return invalidParams(id, ratio.error);
+        return jsonRpcResult(id, {
+          content: [{ type: 'text', text: JSON.stringify(ratio.value) }],
+        });
+      }
       return jsonRpcError(id, -32602, 'Invalid params', `Unknown tool: ${name}`);
+    }
   }
 }
 
@@ -471,7 +483,7 @@ export async function handleMcp(request: Request): Promise<Response> {
         return jsonRpcResult(id, {});
 
       case 'tools/list':
-        return jsonRpcResult(id, { tools: TOOLS });
+        return jsonRpcResult(id, { tools: ALL_TOOLS });
 
       case 'tools/call':
         return handleToolCall(id, body.params);
